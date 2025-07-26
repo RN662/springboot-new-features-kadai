@@ -13,7 +13,11 @@ import com.example.samuraitravel.entity.User;
 
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
 	Page<Review> findByHouseId(Integer houseId, Pageable pageable);
+	
 	Optional<Review> findByHouseAndUser(House house, User user);
+	
 	List<Review> findTop6ByHouseIdOrderByIdDesc(Integer houseId);
+	
+	boolean existsByUserAndHouseId(User user, Integer houseId);
 
 }

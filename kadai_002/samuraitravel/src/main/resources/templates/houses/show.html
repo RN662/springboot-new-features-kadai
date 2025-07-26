@@ -176,7 +176,7 @@
 									<h1 class="mt-4 mb-4 text-center">レビュー</h1>
 								</div>
 
-								<div sec:authorize="isAuthenticated()" class="text-center mb-4">
+								<div sec:authorize="isAuthenticated()" th:if="${loginUser != null and !alreadyReviewed}" class="text-center mb-4">
 									<a th:href="@{/houses/{id}/reviews/register(id=${house.id})}"
 										class="btn text-white shadow-sm mb-2 samuraitravel-btn"
 										style="width: 300px">レビューを投稿する</a>

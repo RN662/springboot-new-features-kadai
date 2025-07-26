@@ -91,10 +91,17 @@ public class HouseController {
 			loginUser = userDetailsImpl.getUser();
 		}
 		
+		// 投稿済みチェック（ログイン中ユーザーのみ）
+		boolean alreadyReviewed = false;
+		if (loginUser != null) {
+			alreadyReviewed = reviewRepository.existsByUserAndHouseId(loginUser, id);
+		}
+		
 		model.addAttribute("house", house);
 		model.addAttribute("reservationInputForm", new ReservationInputForm());
 		model.addAttribute("recentReviews", recentReviews);
 		model.addAttribute("loginUser", loginUser);
+		model.addAttribute("alreadyReviewed", alreadyReviewed);
 		
 		return "houses/show";
 	}
